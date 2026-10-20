@@ -1,0 +1,43 @@
+{
+  "baseline": {
+    "approved-email": {
+      "passed": false,
+      "score": 0.8,
+      "checks": {
+        "tool_order": true,
+        "answer_terms": true,
+        "citations": true,
+        "budget": true,
+        "policy": false
+      },
+      "violations": [
+        "approval_missing"
+      ],
+      "cost_usd": 0.0,
+      "answer_preview": "Confirmed for [EMAIL]"
+    }
+  },
+  "candidate": {
+    "approved-email": {
+      "passed": true,
+      "score": 1.0,
+      "checks": {
+        "tool_order": true,
+        "answer_terms": true,
+        "citations": true,
+        "budget": true,
+        "policy": true
+      },
+      "violations": [],
+      "cost_usd": 0.02,
+      "answer_preview": "Confirmed for [EMAIL]"
+    }
+  },
+  "comparison": {
+    "regressions": [],
+    "improvements": [
+      "approved-email"
+    ],
+    "pass_rate": 1.0
+  }
+}

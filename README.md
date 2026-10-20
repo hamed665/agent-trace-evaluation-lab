@@ -1,11 +1,15 @@
 # Agent Trace Evaluation Lab
 
+### A Hamed Minaei engineering project
+
 ![Verify](https://github.com/hamed665/agent-trace-evaluation-lab/actions/workflows/verify.yml/badge.svg)
 
 An offline regression harness for recorded agent traces, with approval checks, tool-order assertions, citation requirements and budget gates.
 
 **Status:** tested reference implementation with a reproducible synthetic CLI demo.
-Built as an independent engineering portfolio project by [Hamed Minaei](https://github.com/hamed665).
+**Project owner & maintainer:** [Hamed Minaei](https://github.com/hamed665)  
+**Engineering focus:** Agent behavior verification  
+**License:** MIT · Copyright © 2026 Hamed Minaei
 
 ## Features
 
@@ -75,6 +79,13 @@ Traces must originate from a trusted recorder. An agent-supplied approval event 
 ## Limitations
 
 No LLM judge, live model integration, real price lookup or semantic factuality evaluation. Answer-term checks are lexical, citations check IDs rather than source truth, and reported usage is trusted evidence. Missing usage events produce a zero total; require complete usage telemetry in an integration. Multiple answers use the final answer. JSON inputs are local/trusted and file-byte limits are left to the adapter.
+
+## Maintainer
+
+[Hamed Minaei](https://github.com/hamed665) owns and maintains this portfolio repository.
+For implementation details, review the source, behavioral tests and merged pull requests.
+See [AUTHORS.md](AUTHORS.md) for development attribution and [ENGINEERING.md](ENGINEERING.md)
+for a concise technical walkthrough.
 
 ## Attribution and ownership
 

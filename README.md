@@ -1,15 +1,19 @@
 # Agent Trace Evaluation Lab
 
-### A Hamed Minaei engineering project
-
 ![Verify](https://github.com/hamed665/agent-trace-evaluation-lab/actions/workflows/verify.yml/badge.svg)
 
 An offline regression harness for recorded agent traces, with approval checks, tool-order assertions, citation requirements and budget gates.
 
-**Status:** tested reference implementation with a reproducible synthetic CLI demo.
-**Project owner & maintainer:** [Hamed Minaei](https://github.com/hamed665)  
+**Edition:** local reference component with a runnable synthetic CLI demo.
+**Maintainer:** [Hamed Minaei](https://github.com/hamed665)  
 **Engineering focus:** Agent behavior verification  
 **License:** MIT · Copyright © 2026 Hamed Minaei
+
+## Use case
+
+Use this component in an offline regression workflow to inspect approval ordering, tool restrictions, required citations and usage budgets before changing an agent integration.
+
+**Processing flow:** Versioned cases + baseline/candidate traces → policy checks → aligned regression report and CLI exit status.
 
 ## Features
 
@@ -18,6 +22,16 @@ An offline regression harness for recorded agent traces, with approval checks, t
 - Approval consumption detects reuse; policy failure blocks the final pass.
 - Tool allowlists/order, required answer terms, cited source IDs and usage budgets.
 - Aligned baseline/candidate comparison, regression exit status and redacted answer previews.
+
+## Review the implementation
+
+| Resource | What to inspect |
+| --- | --- |
+| [Core module](evaluate.py) | Decision rules, validation and failure handling |
+| [Behavioral tests](tests/) | Success paths and rejected or ambiguous cases |
+| [Example output](docs/demo-output.json) | Results from the bundled synthetic scenario |
+| [Engineering notes](ENGINEERING.md) | Design decisions and integration boundaries |
+| [Validation record](VALIDATION.md) | Recorded verification scope |
 
 ## Quick start
 
@@ -30,8 +44,7 @@ python demo.py
 python -m unittest discover -s tests -v
 ```
 
-The demo performs real computation against synthetic data. Its captured output is in
-[docs/demo-output.json](docs/demo-output.json). It uses no customer records or production systems.
+The demo executes the core component against synthetic inputs. Compare its output with [docs/demo-output.json](docs/demo-output.json).
 
 Evaluate your own schema-compatible local fixture with `python demo.py --input sample.json`.
 
@@ -63,7 +76,7 @@ docker build -t agent-trace-evaluation-lab .
 docker run --rm --read-only --network none --tmpfs /tmp:rw,noexec,nosuid,size=32m agent-trace-evaluation-lab
 ```
 
-The Docker definition is provided for reproducibility. Container execution is not claimed as verified unless recorded in VALIDATION.md.
+The Dockerfile packages the same CLI demo. Consult [VALIDATION.md](VALIDATION.md) for the recorded execution scope.
 
 ## Testing
 
@@ -80,19 +93,12 @@ Traces must originate from a trusted recorder. An agent-supplied approval event 
 
 No LLM judge, live model integration, real price lookup or semantic factuality evaluation. Answer-term checks are lexical, citations check IDs rather than source truth, and reported usage is trusted evidence. Missing usage events produce a zero total; require complete usage telemetry in an integration. Multiple answers use the final answer. JSON inputs are local/trusted and file-byte limits are left to the adapter.
 
-## Maintainer
+## Maintenance and attribution
 
-[Hamed Minaei](https://github.com/hamed665) owns and maintains this portfolio repository.
-For implementation details, review the source, behavioral tests and merged pull requests.
-See [AUTHORS.md](AUTHORS.md) for development attribution and [ENGINEERING.md](ENGINEERING.md)
-for a concise technical walkthrough.
+Maintained by [Hamed Minaei](https://github.com/hamed665). See [AUTHORS.md](AUTHORS.md) for development attribution. This original reference implementation was developed with AI assistance; its source, tests and synthetic fixtures are maintained in this repository.
 
-## Attribution and ownership
+For a reproducible issue, include a sanitized fixture and the command used in [GitHub Issues](https://github.com/hamed665/agent-trace-evaluation-lab/issues).
 
-This repository is an original implementation created for Hamed Minaei's portfolio with
-AI-assisted development and local verification. No upstream application's source code or
-Git history was imported. Python's standard library supplies the underlying runtime,
-SQLite bindings, cryptography primitives, JSON, dates and decimal arithmetic as used here.
-The implementation, tests, synthetic fixtures and documentation are maintained in this repository.
+## License
 
-License: [MIT](LICENSE). No third-party runtime packages are required.
+[MIT](LICENSE). No third-party runtime packages are required.
